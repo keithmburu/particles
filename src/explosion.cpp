@@ -16,7 +16,7 @@ public:
   }
 
   void setup() {
-    setWindowSize(1000, 1000);
+    setWindowSize(500, 500);
     renderer.loadShader("billboard-animated", 
       "../shaders/billboard-animated.vs", 
       "../shaders/billboard-animated.fs");
@@ -46,7 +46,8 @@ public:
     renderer.texture("image", "explosion");
 
     // 30 fps => each frame 1/30 long, e.g. when time = 1s, we play frame 30
-    frame = 0;
+    frame = int(frame + dt() * 30) % 30;
+    cout << dt() << " " << frame << endl;
     renderer.setUniform("Frame", frame);
     renderer.setUniform("Rows", numRows);
     renderer.setUniform("Cols", numCols);
