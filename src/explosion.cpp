@@ -47,8 +47,8 @@ public:
 
     // 30 fps => each frame 1/30 long, e.g. when time = 1s, we play frame 30
     _time = _time + dt();
-    int frame = int(_time * 30) % 30;
-    cout << dt() << " " << _time << " " << frame << endl;
+    int frame = int(_time * 30) % (numRows * numCols);
+    // cout << dt() << " " << _time << " " << frame << endl;
     renderer.setUniform("Frame", frame);
     renderer.setUniform("Rows", numRows);
     renderer.setUniform("Cols", numCols);
