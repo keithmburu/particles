@@ -24,7 +24,7 @@ void main()
   int col = Frame % Cols;
   float u = (vPosition.x + col) / Cols;
   float v = (vPosition.y + row) / Rows;
-  uv = vec2(u, v);
+  uv = vec2(u, -v);
 
   vec3 z = normalize(CameraPos - Offset);
   vec3 x = normalize(cross(vec3(0,1,0), z));

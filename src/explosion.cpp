@@ -46,12 +46,13 @@ public:
     renderer.texture("image", "explosion");
 
     // 30 fps => each frame 1/30 long, e.g. when time = 1s, we play frame 30
-    frame = int(frame + dt() * 30) % 30;
-    cout << dt() << " " << frame << endl;
+    _time = _time + dt();
+    int frame = int(_time * 30) % 30;
+    cout << dt() << " " << _time << " " << frame << endl;
     renderer.setUniform("Frame", frame);
     renderer.setUniform("Rows", numRows);
     renderer.setUniform("Cols", numCols);
-
+    
     float aspect = ((float)width()) / height();
     renderer.perspective(glm::radians(60.0f), aspect, 0.1f, 50.0f);
 
@@ -66,7 +67,8 @@ protected:
   vec3 eyePos = vec3(0, 0, 2);
   vec3 lookPos = vec3(0, 0, 0);
   vec3 up = vec3(0, 1, 0);
-  int frame = 0;
+
+  float _time = 0.0f;
   int numRows = 8;
   int numCols = 8;
 };
