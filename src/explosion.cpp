@@ -46,9 +46,8 @@ public:
     renderer.texture("image", "explosion");
 
     // 30 fps => each frame 1/30 long, e.g. when time = 1s, we play frame 30
-    _time = _time + dt();
-    int frame = int(_time * 30) % (numRows * numCols);
-    // cout << dt() << " " << _time << " " << frame << endl;
+    time = time + dt();
+    int frame = int(time * 30) % (numRows * numCols);
     renderer.setUniform("Frame", frame);
     renderer.setUniform("Rows", numRows);
     renderer.setUniform("Cols", numCols);
@@ -68,7 +67,7 @@ protected:
   vec3 lookPos = vec3(0, 0, 0);
   vec3 up = vec3(0, 1, 0);
 
-  float _time = 0.0f;
+  float time = 0.0f;
   int numRows = 8;
   int numCols = 8;
 };
