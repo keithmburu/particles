@@ -23,12 +23,6 @@ public:
     renderer.loadShader("simple-texture",
       "../shaders/simple-texture.vs",
       "../shaders/simple-texture.fs");
-    renderer.loadShader("billboard-axis",
-    "../shaders/billboard-axis.vs",
-    "../shaders/billboard-axis.fs");
-    renderer.loadShader("billboard",
-    "../shaders/billboard.vs",
-    "../shaders/billboard.fs");
 
     Image img;
     img.load("../textures/tree.png", true);
@@ -99,9 +93,9 @@ public:
     renderer.push();
     vec3 n = normalize(cameraPos);
     float thetaY = atan2(-n.x, n.z);
-    vec3 x = normalize(vec3(cos(thetaY), 0, sin(thetaY)));
-    vec3 y = normalize(vec3(0, 1, 0));
-    vec3 z = normalize(vec3(-sin(thetaY), 0, cos(thetaY)));
+    vec3 x = vec3(cos(thetaY), 0, sin(thetaY));
+    vec3 y = vec3(0, 1, 0);
+    vec3 z = vec3(-sin(thetaY), 0, cos(thetaY));
     mat3 R = mat3(x, y, z);
     renderer.rotate(R);
     renderer.translate(vec3(-0.5, -0.5, 0));
