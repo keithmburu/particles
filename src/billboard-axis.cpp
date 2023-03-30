@@ -14,7 +14,7 @@ class Viewer : public Window {
 public:
   Viewer() : Window() {
     _radius = 2;
-    _azimuth = _elevation = 0;
+    _elevation = _azimuth = 0;
     _leftClick = false;
   }
 
@@ -23,9 +23,12 @@ public:
     renderer.loadShader("simple-texture",
       "../shaders/simple-texture.vs",
       "../shaders/simple-texture.fs");
-      renderer.loadShader("billboard-axis",
-      "../shaders/billboard-axis.vs",
-      "../shaders/billboard-axis.fs");
+    renderer.loadShader("billboard-axis",
+    "../shaders/billboard-axis.vs",
+    "../shaders/billboard-axis.fs");
+    renderer.loadShader("billboard",
+    "../shaders/billboard.vs",
+    "../shaders/billboard.fs");
 
     Image img;
     img.load("../textures/tree.png", true);
@@ -76,11 +79,12 @@ public:
 
     float aspect = ((float)width()) / height();
     renderer.perspective(glm::radians(60.0f), aspect, 0.1f, 50.0f);
+    
     float camPosX = _radius * sin(_azimuth) * cos(_elevation);
     float camPosY = _radius * sin(_elevation);
     float camPosZ = _radius * cos(_azimuth) * cos(_elevation);
-    eyePos = vec3(camPosX, camPosY, camPosZ);
-    renderer.lookAt(eyePos, lookPos, up);
+    cameraPos = vec3(camPosX, camPosY, camPosZ);
+    renderer.lookAt(cameraPos, lookPos, up);
 
     // draw plane
     renderer.texture("Image", "grass");
@@ -91,20 +95,25 @@ public:
     renderer.pop();
 
     // draw tree
-    renderer.beginShader("billboard-axis");
     renderer.texture("Image", "tree");
     renderer.push();
+    vec3 n = normalize(cameraPos);
+    float thetaY = atan2(-n.x, n.z);
+    vec3 x = normalize(vec3(cos(thetaY), 0, sin(thetaY)));
+    vec3 y = normalize(vec3(0, 1, 0));
+    vec3 z = normalize(vec3(-sin(thetaY), 0, cos(thetaY)));
+    mat3 R = mat3(x, y, z);
+    renderer.rotate(R);
     renderer.translate(vec3(-0.5, -0.5, 0));
     renderer.quad(); // vertices span from (0,0,0) to (1,1,0)
     renderer.pop();
-    renderer.endShader();
 
     renderer.endShader();
   }
 
 protected:
 
-  vec3 eyePos = vec3(0, 0, 2);
+  vec3 cameraPos = vec3(0, 0, 2);
   vec3 lookPos = vec3(0, 0, 0);
   vec3 up = vec3(0, 1, 0);
   float _radius;
