@@ -1,6 +1,8 @@
 #version 400
 
 layout (location = 0) in vec3 vPosition;
+layout (location = 1) in vec3 vNormal;
+layout (location = 2) in vec2 vUV;
 
 uniform vec3 CameraPos;
 uniform float Size;
@@ -15,7 +17,7 @@ out vec2 uv;
 void main()
 {
   color = Color;
-  uv = vPosition.xy;
+  uv = vUV;
 
   vec3 z = normalize(CameraPos - Offset);
   vec3 x = normalize(cross(vec3(0,1,0), z));
