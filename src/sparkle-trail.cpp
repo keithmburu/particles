@@ -52,6 +52,8 @@ void createSparkleTrail()
         particle.color = vec4(1, 1, 1, 1);
       } else {
         particle.vel = particle.pos - nextPos;
+        particle.vel.x += ((rand() % 10) / 10.0f) * particle.vel.x;
+        particle.vel.y += ((rand() % 10) / 10.0f) * particle.vel.y;
         particle.color = vec4((rand() % 256)/255.0f, (rand() % 256)/255.0f, (rand() % 256)/255.0f, (rand() % 11) / 10.0f);
       }
       particle.size = 3.0;
@@ -67,26 +69,19 @@ void createSparkleTrail()
       Particle particle = mParticles[i];
       if (particle.color.w > 0) {
         particle.pos += particle.vel * dt();
-        particle.color -= vec4((rand() % 6)/255.0f, (rand() % 6)/255.0f, (rand() % 6)/255.0f, 0.005);
-        particle.size += 0.01;
+        particle.color -= vec4(0, 0, 0, 0.002);
+        particle.size += 0.001;
         particle.rot += 0.005;
       } else {
         particle.pos = mParticles[0].pos;
         particle.vel = -mParticles[0].vel;
+        particle.vel.x += ((rand() % 10) / 10.0f) * particle.vel.x;
+        particle.vel.y += ((rand() % 10) / 10.0f) * particle.vel.y;
         particle.color = vec4((rand() % 256)/255.0f, (rand() % 256)/255.0f, (rand() % 256)/255.0f, (rand() % 11) / 10.0f);
         particle.size = 3.0;
         particle.rot = 0.0;
       }
       mParticles[i] = particle;
-    }
-
-    int frame = int(elapsedTime() / dt());
-    if (frame != prevFrame) {
-      prevFrame = frame;
-      for (int i = 0; i < 2; i++) {
-        cout << "pos " << mParticles[i].pos.x << " " << mParticles[i].pos.y << " | vel " << mParticles[i].vel.x << " " << mParticles[i].vel.y << " | alpha " << mParticles[i].color.w << endl;
-      }
-      cout << endl;
     }
 
     mParticles[0].pos += mParticles[0].vel * dt();
@@ -137,7 +132,6 @@ void createSparkleTrail()
 protected:
 
   vec3 eyePos = vec3(0, 0, 40);
-  // vec3 eyePos;
   vec3 lookPos = vec3(0, 0, 0);
   vec3 up = vec3(0, 1, 0);
 
@@ -146,7 +140,6 @@ protected:
   int _width;
   int _height;
   int _radius;
-  int prevFrame = 0;
 };
 
 int main(int argc, char** argv)
