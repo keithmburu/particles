@@ -52,9 +52,9 @@ void createSparkleTrail()
         particle.color = vec4(1, 1, 1, 1);
       } else {
         particle.vel = particle.pos - nextPos;
-        particle.color = vec4(1, 1, 1, (rand() % 11) / 10.0f);
+        particle.color = vec4((rand() % 256)/255.0f, (rand() % 256)/255.0f, (rand() % 256)/255.0f, (rand() % 11) / 10.0f);
       }
-      particle.size = 2.0;
+      particle.size = 3.0;
       particle.rot = 0.0;
       particle.startTime = time;
       mParticles.push_back(particle);
@@ -66,15 +66,15 @@ void createSparkleTrail()
     for (int i = 1; i < mParticles.size(); i++) {
       Particle particle = mParticles[i];
       if (particle.color.w > 0) {
-        particle.pos += particle.vel;
-        particle.color -= vec4((rand() % 6)/255.0f, (rand() % 6)/255.0f, (rand() % 5)/255.0f, 0.001);
-        particle.size += 0.001;
+        particle.pos += particle.vel * dt();
+        particle.color -= vec4((rand() % 6)/255.0f, (rand() % 6)/255.0f, (rand() % 6)/255.0f, 0.005);
+        particle.size += 0.01;
         particle.rot += 0.005;
       } else {
         particle.pos = mParticles[0].pos;
         particle.vel = -mParticles[0].vel;
-        particle.color = vec4(1, 1, 1, (rand() % 11) / 10.0f);
-        particle.size = 2.0;
+        particle.color = vec4((rand() % 256)/255.0f, (rand() % 256)/255.0f, (rand() % 256)/255.0f, (rand() % 11) / 10.0f);
+        particle.size = 3.0;
         particle.rot = 0.0;
       }
       mParticles[i] = particle;
@@ -89,7 +89,7 @@ void createSparkleTrail()
       cout << endl;
     }
 
-    mParticles[0].pos += mParticles[0].vel;
+    mParticles[0].pos += mParticles[0].vel * dt();
     float time = elapsedTime();
     vec3 nextPos = vec3(_radius * cos(time + dt()), _radius * sin(time + dt()), 0);
     mParticles[0].vel = nextPos - mParticles[0].pos;
@@ -142,7 +142,7 @@ protected:
   vec3 up = vec3(0, 1, 0);
 
   std::vector<Particle> mParticles;
-  int _numParticles = 100;
+  int _numParticles = 20;
   int _width;
   int _height;
   int _radius;
