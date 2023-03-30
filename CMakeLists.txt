@@ -103,6 +103,9 @@ target_link_libraries(explosion ${CORE})
 add_executable(billboard-axis src/billboard-axis.cpp ${SOURCES} ${SHADERS})
 target_link_libraries(billboard-axis ${CORE})
 
+add_executable(sprite-sheets src/sprite-sheets.cpp ${SOURCES} ${SHADERS})
+target_link_libraries(sprite-sheets ${CORE})
+
 if (WIN32)
   source_group("shaders" FILES ${SHADERS})
   source_group("agl" FILES ${SOURCES})
