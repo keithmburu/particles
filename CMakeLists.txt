@@ -103,8 +103,11 @@ target_link_libraries(explosion ${CORE})
 add_executable(billboard-axis src/billboard-axis.cpp ${SOURCES} ${SHADERS})
 target_link_libraries(billboard-axis ${CORE})
 
-add_executable(sprite-sheets src/sprite-sheets.cpp ${SOURCES} ${SHADERS})
-target_link_libraries(sprite-sheets ${CORE})
+add_executable(animated-sprites src/animated-sprites.cpp ${SOURCES} ${SHADERS})
+target_link_libraries(animated-sprites ${CORE})
+
+add_executable(snow src/snow.cpp ${SOURCES} ${SHADERS})
+target_link_libraries(snow ${CORE})
 
 if (WIN32)
   source_group("shaders" FILES ${SHADERS})
