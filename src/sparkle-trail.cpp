@@ -1,5 +1,9 @@
-// Bryn Mawr College, alinen, 2020
-//
+/**
+ * @file sparkle-trail.cpp
+ * @author Keith Mburu
+ * @date 2023-04-02
+ * @brief Implements star particle with trailing particles
+ */
 
 #include <cmath>
 #include <string>

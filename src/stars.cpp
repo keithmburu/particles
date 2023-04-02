@@ -1,5 +1,9 @@
-// Bryn Mawr College, alinen, 2020
-//
+/**
+ * @file stars.cpp
+ * @author Keith Mburu
+ * @date 2023-04-02
+ * @brief Implements particle system of stars
+ */
 
 #include <cmath>
 #include <string>

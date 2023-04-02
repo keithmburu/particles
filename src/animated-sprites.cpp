@@ -1,5 +1,10 @@
-// Bryn Mawr College, alinen, 2020
-//
+/**
+ * @file stars.cpp
+ * @author Keith Mburu
+ * @date 2023-04-02
+ * @brief Implements explosion, flame, and fireball animations 
+ * using sprite sheets
+ */
 
 #include <cmath>
 #include <string>

@@ -1,5 +1,9 @@
-// Bryn Mawr College, alinen, 2020
-//
+/**
+ * @file snow.cpp
+ * @author Keith Mburu
+ * @date 2023-04-02
+ * @brief Implements snowflake particle system
+ */
 
 #include <cmath>
 #include <string>
