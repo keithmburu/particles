@@ -87,23 +87,6 @@ void createSparkleTrail()
 
   void drawSparkleTrail()
   {
-    vec3 cameraPos = renderer.cameraPosition();
-
-    // sort
-    for (int i = 1; i < mParticles.size(); i++)
-    {
-      Particle particle1 = mParticles[i];
-      Particle particle2 = mParticles[i - 1];
-      float dSqr1 = length2(particle1.pos - cameraPos);
-      float dSqr2 = length2(particle2.pos - cameraPos);
-      if (dSqr2 < dSqr1)
-      {
-        mParticles[i] = particle2;
-        mParticles[i - 1] = particle1;
-      }
-    }
-
-    // draw
     renderer.texture("image", "star");
     for (int i = 0; i < mParticles.size(); i++)
     {
