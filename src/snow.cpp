@@ -40,7 +40,7 @@ void createSnowflakes()
   {
     for (int i = 0; i < _numParticles; i++) {
       Particle particle;
-      particle.size = std::max(3, rand() % 7);
+      particle.size = rand() % 7;
       particle.pos = vec3((rand() % 50) - 25, 35 + (rand() % 100), 0);
       float xVelJitter = pow(-1, rand()) * ((rand() % 5) / 10.0f);
       float yVelJitter = pow(-1, rand()) * ((rand() % 5) / 10.0f);
@@ -60,7 +60,7 @@ void createSnowflakes()
       if (particle.pos.y >= -35) {
         particle.pos -= particle.vel * dt();
       } else {
-        particle.size = std::max(3, rand() % 7);
+        particle.size = rand() % 7;
         particle.pos = vec3((rand() % 50) - 25, 35 + (rand() % 100), 0);
         float xVelJitter = pow(-1, rand()) * ((rand() % 5) / 10.0f);
         float yVelJitter = pow(-1, rand()) * ((rand() % 5) / 10.0f);
@@ -137,7 +137,7 @@ protected:
   vec3 up = vec3(0, 1, 0);
 
   std::vector<Particle> mParticles;
-  int _numParticles = 50;
+  int _numParticles = 100;
   int _width;
   int _height;
 };
