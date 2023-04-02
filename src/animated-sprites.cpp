@@ -19,17 +19,11 @@ struct spriteSheet {
 
 class Viewer : public Window {
 public:
-  Viewer(string animationType) {
-    spriteSheets["explosion-2"] = {"../textures/explosion2.png", 8, 8};
-    spriteSheets["explosion-3"] = {"../textures/explosion3.png", 8, 16};
-    spriteSheets["flame"] = {"../textures/ParticleFlamesSheet.png", 4, 8};
-    spriteSheets["fireball-1"] = {"../textures/fireball.png", 2, 8};
-    spriteSheets["fireball-2"] = {"../textures/ParticleFireballSheet.png", 4, 1};
-
-    animationType = animationType;
-    numRows = spriteSheets[animationType].numRows;
-    numCols = spriteSheets[animationType].numCols;
-    textureFile = spriteSheets[animationType].textureFile;
+  Viewer(string animationType, const struct spriteSheet s) {
+    this->animationType = animationType;
+    numRows = s.numRows;
+    numCols = s.numCols;
+    textureFile = s.textureFile;
     cout << animationType << " " << textureFile << " " << numRows << " rows " << numCols << " cols" << endl;
   }
 
@@ -45,7 +39,6 @@ public:
     renderer.setDepthTest(false);
     renderer.blendMode(agl::ADD);
   }
-
 
   void mouseMotion(int x, int y, int dx, int dy) {
   }
@@ -69,6 +62,8 @@ public:
     renderer.setUniform("Frame", frame);
     renderer.setUniform("Rows", numRows);
     renderer.setUniform("Cols", numCols);
+    bool topToBottom = (animationType == "flame");
+    renderer.setUniform("TopToBottom", topToBottom);
     
     float aspect = ((float)width()) / height();
     renderer.perspective(glm::radians(60.0f), aspect, 0.1f, 50.0f);
@@ -90,20 +85,19 @@ protected:
   int numCols;
   string animationType;
   string textureFile;
-  map<string, spriteSheet> spriteSheets;
 };
 
 int main(int argc, char** argv)
 {
-  Viewer explosion2Viewer("explosion-2");
-  explosion2Viewer.run();
-  Viewer explosion3Viewer("explosion-3");
-  explosion3Viewer.run();
-  Viewer flameViewer("flame");
-  flameViewer.run();
-  Viewer fireball1Viewer("fireball-1");
-  fireball1Viewer.run();
-  Viewer fireball2Viewer("fireball-2");
-  fireball2Viewer.run();
+  map<string, spriteSheet> spriteSheets;
+  spriteSheets["explosion-2"] = {"../textures/explosion2.png", 8, 8};
+  spriteSheets["explosion-3"] = {"../textures/explosion3.png", 8, 16};
+  spriteSheets["flame"] = {"../textures/ParticleFlamesSheet.png", 4, 8};
+  spriteSheets["fireball-1"] = {"../textures/fireball.png", 2, 8};
+  spriteSheets["fireball-2"] = {"../textures/ParticleFireballSheet.png", 4, 1};
+  for (auto it = spriteSheets.begin(); it != spriteSheets.end(); it++) {
+    Viewer viewer(it->first, it->second);
+    viewer.run();
+  }
   return 0;
 }

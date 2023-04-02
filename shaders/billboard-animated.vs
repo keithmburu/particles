@@ -11,6 +11,7 @@ uniform mat4 MVP;
 uniform int Frame;
 uniform int Rows;
 uniform int Cols;
+uniform bool TopToBottom;
 
 out vec4 color;
 out vec2 uv;
@@ -20,7 +21,12 @@ void main()
   color = Color;
 
   // compute UV coordinates based on Frame
-  int row = int(Frame / Cols);
+  int row;
+  if (TopToBottom) {
+    row = Rows - int(Frame / Cols) - 1;
+  } else {
+    row = int(Frame / Cols);
+  }
   int col = Frame % Cols;
   float u = (vPosition.x + col) / Cols;
   float v = (vPosition.y + row) / Rows;
