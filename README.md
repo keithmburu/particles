@@ -2,7 +2,7 @@
 
 Implements particle demos
 
-TODO: Add a representative image for your project here
+<img src="../demo/stars.gif" width="400">
 
 ## How to build
 
@@ -49,17 +49,26 @@ particles/build $ ../bin/explosion
 
 ## Demo of basic features
 
-TODO: Document the main demos your viewer (shaders + models)
-
 1. Trailing sparkles
+<img src="../demo/sparkle-trail.gif" width="400">
 2. Explosion animation
+<img src="../demo/explosion.gif" width="400">
 3. Axis Billboard
+<img src="../demo/billboard-axis.gif" width="400">
 
 ## Unique features 
 
-TODO: Show the unique features you made
-
-1. Explosion, flame, and fireball animations
+1. Animated sprites - Explosions, flame, and fireball
+<div style="display:flex;">
+    <img src="../demo/explosion2.gif" width="200">
+    <img src="../demo/flame.gif" width="200">
+</div>
+<div style="display:flex;">
+    <img src="../demo/fireball.gif" width="200">
+    <img src="../demo/fireball2.gif" width="200">
+</div>
 2. Snowfall 
+<img src="../demo/snow.gif" width="400">
 3. Stars
+<img src="../demo/stars.gif" width="400">
 
