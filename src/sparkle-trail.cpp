@@ -18,17 +18,13 @@ struct Particle {
   glm::vec4 color;
   float size;
   float rot;
-  float startTime;
-  float lifetime;
 };
 
 class Viewer : public Window {
 public:
   Viewer() : Window() {
     _width = _height = 500;
-    // _radius = std::min(_width, _height) * 0.75;
     _radius = 20;
-    // eyePos = vec3(0, 0, std::min(_width, _height));
     srand(elapsedTime());
   }
 
@@ -58,7 +54,6 @@ void createSparkleTrail()
       }
       particle.size = 3.0;
       particle.rot = 0.0;
-      particle.startTime = time;
       mParticles.push_back(particle);
     }
   }
@@ -92,6 +87,23 @@ void createSparkleTrail()
 
   void drawSparkleTrail()
   {
+    vec3 cameraPos = renderer.cameraPosition();
+
+    // sort
+    for (int i = 1; i < mParticles.size(); i++)
+    {
+      Particle particle1 = mParticles[i];
+      Particle particle2 = mParticles[i - 1];
+      float dSqr1 = length2(particle1.pos - cameraPos);
+      float dSqr2 = length2(particle2.pos - cameraPos);
+      if (dSqr2 < dSqr1)
+      {
+        mParticles[i] = particle2;
+        mParticles[i - 1] = particle1;
+      }
+    }
+
+    // draw
     renderer.texture("image", "star");
     for (int i = 0; i < mParticles.size(); i++)
     {
@@ -121,8 +133,8 @@ void createSparkleTrail()
 
     float aspect = ((float)width()) / height();
     renderer.perspective(glm::radians(60.0f), aspect, 0.1f, 50.0f);
-
     renderer.lookAt(eyePos, lookPos, up);
+
     updateSparkleTrail();
     drawSparkleTrail();
 
