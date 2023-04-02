@@ -109,6 +109,9 @@ target_link_libraries(animated-sprites ${CORE})
 add_executable(snow src/snow.cpp ${SOURCES} ${SHADERS})
 target_link_libraries(snow ${CORE})
 
+add_executable(stars src/stars.cpp ${SOURCES} ${SHADERS})
+target_link_libraries(stars ${CORE})
+
 if (WIN32)
   source_group("shaders" FILES ${SHADERS})
   source_group("agl" FILES ${SOURCES})
