@@ -51,7 +51,15 @@ particles/build $ ../bin/explosion
 
 TODO: Document the main demos your viewer (shaders + models)
 
+1. Trailing sparkles
+2. Explosion animation
+3. Axis Billboard
+
 ## Unique features 
 
 TODO: Show the unique features you made
+
+1. Explosion, flame, and fireball animations
+2. Snowfall 
+3. Stars
 
