@@ -2,7 +2,7 @@
 
 Implements particle demos
 
-<img src="demo/stars.gif" width="400">
+<img src="demo/rain.gif" width="400">
 
 ## How to build
 
@@ -58,7 +58,7 @@ particles/build $ ../bin/explosion
 
 ## Unique features 
 
-1. Animated sprites - Explosions, flame, and fireballs
+1. Animated sprites - Explosion, flame, fireball
 <div style="display:flex;">
     <img src="demo/explosion2.gif" width="200">
     <img src="demo/flame.gif" width="200">
@@ -67,8 +67,10 @@ particles/build $ ../bin/explosion
     <img src="demo/fireball.gif" width="200">
     <img src="demo/fireball2.gif" width="200">
 </div>
-2. Snowfall 
+2. Snow
 <img src="demo/snow.gif" width="400">
 3. Stars
 <img src="demo/stars.gif" width="400">
+4. Rain
+<img src="demo/rain.gif" width="400">
 
