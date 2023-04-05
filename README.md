@@ -58,7 +58,7 @@ particles/build $ ../bin/explosion
 
 ## Unique features 
 
-1. Animated sprites - Explosions, flame, and fireball
+1. Animated sprites - Explosions, flame, and fireballs
 <div style="display:flex;">
     <img src="demo/explosion2.gif" width="200">
     <img src="demo/flame.gif" width="200">

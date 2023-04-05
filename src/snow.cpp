@@ -44,7 +44,6 @@ void createSnowflakes()
   {
     for (int i = 0; i < _numParticles; i++) {
       Particle particle;
-      particle.size = rand() % 7;
       particle.pos = vec3((rand() % 50) - 25, 35 + (rand() % 100), rand() % 5);
       float xVelJitter = pow(-1, rand()) * ((rand() % 5) / 10.0f);
       float yVelJitter = pow(-1, rand()) * ((rand() % 5) / 10.0f);
@@ -52,6 +51,7 @@ void createSnowflakes()
       float cJitter = (rand() % 50) / 255.0f;
       float aJitter = (rand() % 3) / 10.0f;
       particle.color = vec4(0.8 - cJitter, 0.8 - cJitter, 0.8 - cJitter, 0.8 - aJitter);
+      particle.size = rand() % 7;
       particle.rot = 0.0;
       mParticles.push_back(particle);
     }
@@ -64,7 +64,6 @@ void createSnowflakes()
       if (particle.pos.y >= -35) {
         particle.pos -= particle.vel * dt();
       } else {
-        particle.size = rand() % 7;
         particle.pos = vec3((rand() % 50) - 25, 35 + (rand() % 100), rand() % 5);
         float xVelJitter = pow(-1, rand()) * ((rand() % 5) / 10.0f);
         float yVelJitter = pow(-1, rand()) * ((rand() % 5) / 10.0f);
@@ -72,6 +71,7 @@ void createSnowflakes()
         float cJitter = (rand() % 50) / 255.0f;
         float aJitter = (rand() % 3) / 10.0f;
         particle.color = vec4(0.8 - cJitter, 0.8 - cJitter, 0.8 - cJitter, 0.8 - aJitter);
+        particle.size = rand() % 7;
         particle.rot = 0.0;
       }
       mParticles[i] = particle;
