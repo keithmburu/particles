@@ -112,6 +112,9 @@ target_link_libraries(snow ${CORE})
 add_executable(stars src/stars.cpp ${SOURCES} ${SHADERS})
 target_link_libraries(stars ${CORE})
 
+add_executable(rain src/rain.cpp ${SOURCES} ${SHADERS})
+target_link_libraries(rain ${CORE})
+
 if (WIN32)
   source_group("shaders" FILES ${SHADERS})
   source_group("agl" FILES ${SOURCES})
